@@ -51,7 +51,7 @@ const ConnectedApp = connect(
 export default ConnectedApp;
 
 
-/*
+/* keep state separated
 for columns
 todos: [],
 inProgress: [],
