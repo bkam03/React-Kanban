@@ -1,16 +1,16 @@
 import React from 'react';
-
+import Card from './Card.js';
 
 const CardList = ( {cards} ) => {
   console.log( 'CardList component', cards );
   return (
     <ul>
 
-      {cards.map( (user) => {
+      {cards.map( (card) => {
         return (
-          <li>
-            {user}
-          </li>
+         <Card
+          card={card}
+         />
         );
       } )}
 
