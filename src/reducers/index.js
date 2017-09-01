@@ -1,6 +1,6 @@
 import { ADD_CARD, ADD_USER } from '../actions';
 
-const initialState = { cards: [] };
+const initialState = { cards: [ '1', '2' ] }; //make array blank later
 
 const cards = ( state = initialState, action ) => {
   switch( action.type ) {
