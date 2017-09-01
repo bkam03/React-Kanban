@@ -4,33 +4,39 @@ import { connect } from 'react-redux';
 class NewCardForm extends Component {
   constructor(){
     super();
-    this.State = {
-      cardValue: ""
+    this.state = {
+      title: "",
+      priority: "",
+      status: "Queue",
+      createdBy: "",
+      assignedTo: ""
     };
   }
-
+how submit title, make form to create new card.
+get this field to work first, then make the others.
   handleNewCardSubmit( event ) {
-    console.log( 'submit', this.props );
-    this.props.addCard( this.state.cardValue );
+    console.log( 'submit', this.state );
+    this.props.addCard( this.state );
   }
 
-  handleNewCardInput( event ) {
-    console.log( event.target.value );
+  handleInput( event ) {
     this.setState({
-      cardValue: event.target.value
+      [event.target.name]: event.target.value
     });
+    console.log( this.state.title );
   }
 
   render() {
     return (
-      <div>
+      <form>
         <input
           type="text"
-          placeholder="new card"
-          onChange={this.handleNewCardInput.bind(this)}
+          placeholder="title"
+          name='title'
+          onChange={this.handleInput.bind(this)}
         />
         <button onClick={this.handleNewCardSubmit.bind(this)}>New Card</button>
-      </div>
+      </form>
     );
   };
 };
