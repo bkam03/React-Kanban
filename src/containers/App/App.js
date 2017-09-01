@@ -3,27 +3,17 @@ import { connect } from 'react-redux';
 import './App.css';
 import { addCard } from '../../actions';
 import CardList from '../../components/CardList.js';
+import NewCardForm from '../NewCardForm/NewCardForm.js';
 
 
 class App extends Component {
   constructor(){
     super();
     this.State = {
-      cardValue: ""
     }
   }
 
-  handleNewCardSubmit( event ) {
-    console.log( 'submit' );
-    this.props.addCard( this.state.cardValue );
-  }
 
-  handleNewCardInput( event ) {
-    console.log( event.target.value );
-    this.setState({
-      cardValue: event.target.value
-    });
-  }
 
   render() {
     return (
@@ -31,12 +21,9 @@ class App extends Component {
         <CardList
           cards= { this.props.cards }
         />
-        <input
-          type="text"
-          placeholder="new card"
-          onChange={this.handleNewCardInput.bind(this)}
+        <NewCardForm
+          addCard={this.props.addCard}
         />
-        <button onClick={this.handleNewCardSubmit.bind(this)}>New Card</button>
       </div>
     );
   }
@@ -62,3 +49,11 @@ const ConnectedApp = connect(
 )(App);
 
 export default ConnectedApp;
+
+
+/*
+for columns
+todos: [],
+inProgress: [],
+done: []
+*/
