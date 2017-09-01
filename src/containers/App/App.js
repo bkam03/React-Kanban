@@ -4,13 +4,40 @@ import './App.css';
 import { addCard } from '../../actions';
 import CardList from '../../components/CardList.js';
 
+
 class App extends Component {
+  constructor(){
+    super();
+    this.State = {
+      cardValue: ""
+    }
+  }
+
+  handleNewCardSubmit( event ) {
+    console.log( 'submit' );
+    this.props.addCard( this.state.cardValue );
+  }
+
+  handleNewCardInput( event ) {
+    console.log( event.target.value );
+    this.setState({
+      cardValue: event.target.value
+    });
+  }
+
   render() {
-    console.log( 'props', this.props);
     return (
-      <CardList
-        cards= { this.props.cards }
-      />
+      <div>
+        <CardList
+          cards= { this.props.cards }
+        />
+        <input
+          type="text"
+          placeholder="new card"
+          onChange={this.handleNewCardInput.bind(this)}
+        />
+        <button onClick={this.handleNewCardSubmit.bind(this)}>New Card</button>
+      </div>
     );
   }
 }
