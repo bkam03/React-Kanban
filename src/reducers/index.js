@@ -1,20 +1,10 @@
-import { ADD_CARD, ADD_USER } from '../actions';
+import { combineReducers } from 'redux';
 
-const initialState = { cards: [ '1', '2' ] }; //make array blank later
+import cards from './cards.js';
 
-const cards = ( state = initialState, action ) => {
-  switch( action.type ) {
-    case ADD_CARD:
-      console.log( 'reducer ADD_CARD', action.card );
-      return {
-        cards: [...state.cards, action.card ]
-      }
-      break;
-    default:
-      console.log( 'reducer default' );
-      return state;
-      break;
-  }
-}
+const reducers = combineReducers( {
+  cards
 
-export default cards;
+} );
+
+export default reducers;
