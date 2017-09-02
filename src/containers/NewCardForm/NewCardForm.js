@@ -12,8 +12,9 @@ class NewCardForm extends Component {
       assignedTo: ""
     };
   }
-how submit title, make form to create new card.
+/*how submit title, make form to create new card.
 get this field to work first, then make the others.
+*/
   handleNewCardSubmit( event ) {
     console.log( 'submit', this.state );
     this.props.addCard( this.state );

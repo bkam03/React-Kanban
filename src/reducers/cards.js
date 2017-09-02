@@ -1,13 +1,22 @@
 import { ADD_CARD, ADD_USER } from '../actions';
 
-const initialState = { cards: [ '1', '2' ] }; //make array blank later
+const initialState = {
+  cards : [{
+    title: "test",
+    priority: "none",
+    status: "Queue",
+    createdBy: "me",
+    assignedTo: "you"
+  }]
+}; //make array blank later
 
 const cards = ( state = initialState, action ) => {
   switch( action.type ) {
     case ADD_CARD:
       console.log( 'reducer ADD_CARD', action.card );
+      console.log( 'state', state );
       return {
-        cards: [...state.cards, action.card ]
+        cards: [...state, action.card ]
       }
       break;
     default:
