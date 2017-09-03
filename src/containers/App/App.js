@@ -19,13 +19,25 @@ class App extends Component {
     console.log( 'store', this.props.cards );
     return (
       <div>
+
+        <div className="header">
+          <h1>Kanban React</h1>
+        </div>
+
         <CardList
           cards= { this.props.cards }
         />
-        <Column />
+
+        <div className="todo-list">
+          <Column />
+          <Column />
+          <Column />
+        </div>
+
         <NewCardForm
           addCard={this.props.addCard}
         />
+
       </div>
     );
   }
