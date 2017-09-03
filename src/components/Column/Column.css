@@ -1,0 +1,6 @@
+.column {
+  background-color: lightgreen;
+  border: 1px solid black;
+  width: 33%;
+  min-height: 300px;
+}

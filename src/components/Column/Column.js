@@ -1,9 +1,10 @@
 import React from 'react';
+import './Column.css';
 
 const Column = (  ) => {
 
   return (
-    <div>
+    <div className="column">
     I am column.
     </div>
   );
