@@ -14,32 +14,32 @@ class Kanban extends Component {
     };
   }
 
-  sortTasksToColumns( columnStatus ) {
-    let cardArray = this.props.cards.cards;
+  sortTasksToColumns( columnStatus, props ) {
+    let cardArray = props.cards.cards;
     let array = cardArray.filter( ( { status } ) => {
       return status === columnStatus;
     } );
     return array;
   }
 
-  updateColumnArrays(){
+  updateColumnArrays(props){
     this.setState( {
-      queue: this.sortTasksToColumns( "Queue" ),
-      inProgress: this.sortTasksToColumns( "In Progress" ),
-      Complete: this.sortTasksToColumns( "Complete" )
+      queue: this.sortTasksToColumns( "Queue", props ),
+      inProgress: this.sortTasksToColumns( "In Progress", props ),
+      Complete: this.sortTasksToColumns( "Complete", props )
     } );
   }
 
   componentWillMount() {
-    this.updateColumnArrays();
+    this.updateColumnArrays(this.props);
   }
 
-  componentWillUpdate() {
-    this.updateColumnArrays();
+  componentWillReceiveProps( nextprops ) {
+    this.updateColumnArrays(nextprops);
   }
 
   render() {
-    console.log( this.state.queue)
+    console.log( "kanban state", this.state );
     return (
       <div className="todo-list">
         <Column
