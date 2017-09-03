@@ -1,4 +1,4 @@
-import { ADD_CARD, ADD_USER } from '../actions';
+import { ADD_CARD, ADVANCE_CARD } from '../actions';
 
 const initialState = {
   cards : [
@@ -34,7 +34,14 @@ const cards = ( state = initialState, action ) => {
       return {
         cards: [...state.cards, action.card ]
       }
-      break;
+    case ADVANCE_CARD:
+      console.log('reducer ADVANCE_CARD', action.card );
+      let oldCardArray = [ ...state.cards ];
+      find the card by index, alter, return new array.
+      console.log( 'action.card', action );
+      return {
+
+      };
     default:
       console.log( 'reducer default' );
       return state;
