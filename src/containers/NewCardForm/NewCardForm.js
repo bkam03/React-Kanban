@@ -29,7 +29,7 @@ get this field to work first, then make the others.
   }
 
   render() {
-    let fieldNames = [ 'title', 'priority', 'status', 'createdBy', 'assignedTo' ];
+    let fieldNames = [ 'title', 'priority', 'createdBy', 'assignedTo' ];
     return (
       <form>
         {
