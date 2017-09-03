@@ -23,19 +23,18 @@ class App extends Component {
           <h1>Kanban React</h1>
         </div>
 
-
-
         <div className="todo-list">
-        <Column
-          cards= { this.props.cards }
-        />
-        <Column
-          cards= { this.props.cards }
-        />
-        <Column
-          cards= { this.props.cards }
-        />
+          <Column
+            cards= { this.props.cards }
+          />
+          <Column
+            cards= { this.props.cards }
+          />
+          <Column
+            cards= { this.props.cards }
+          />
         </div>
+
         <NewCardForm
           addCard={this.props.addCard}
         />
