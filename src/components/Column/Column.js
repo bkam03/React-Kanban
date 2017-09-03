@@ -1,6 +1,6 @@
 import React from 'react';
 import './Column.css';
-import Card from '../Card/Card.js';
+import Card from '../../containers/Card/Card.js';
 
 const Column = ( cards ) => {
   console.log( 'column', cards );
