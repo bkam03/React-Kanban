@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import { addCard } from '../../actions';
-import CardList from '../../components/Card/CardList.js';
 import NewCardForm from '../NewCardForm/NewCardForm.js';
 import Column from '../../components/Column/Column.js';
 
@@ -24,16 +23,19 @@ class App extends Component {
           <h1>Kanban React</h1>
         </div>
 
-        <CardList
-          cards= { this.props.cards }
-        />
+
 
         <div className="todo-list">
-          <Column />
-          <Column />
-          <Column />
+        <Column
+          cards= { this.props.cards }
+        />
+        <Column
+          cards= { this.props.cards }
+        />
+        <Column
+          cards= { this.props.cards }
+        />
         </div>
-
         <NewCardForm
           addCard={this.props.addCard}
         />
