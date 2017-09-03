@@ -21,6 +21,7 @@ get this field to work first, then make the others.
   }
 
   handleInput( event ) {
+
     this.setState({
       [event.target.name]: event.target.value
     });
@@ -28,15 +29,27 @@ get this field to work first, then make the others.
   }
 
   render() {
+    let fieldNames = [ 'title', 'priority', 'status', 'createdBy', 'assignedTo' ];
     return (
       <form>
-        <input
-          type="text"
-          placeholder="title"
-          name='title'
-          onChange={this.handleInput.bind(this)}
-        />
-        <button onClick={this.handleNewCardSubmit.bind(this)}>New Card</button>
+        {
+          fieldNames.map( ( fieldName ) => {
+            return (
+              <div>
+                <label for={ fieldName }>{ fieldName }</label>
+                <input
+                  type="text"
+                  placeholder={ fieldName }
+                  name={ fieldName }
+                  id={ fieldName }
+                  onChange={this.handleInput.bind(this)}
+                />
+              </div>
+            );
+          } )
+        }
+        <br />
+        <button type="button" onClick ={this.handleNewCardSubmit.bind(this)}>New Card</button>
       </form>
     );
   };
