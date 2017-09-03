@@ -25,7 +25,6 @@ get this field to work first, then make the others.
     this.setState({
       [event.target.name]: event.target.value
     });
-    console.log( this.state.title );
   }
 
   render() {
