@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './App.css';
 import { addCard } from '../../actions';
 import NewCardForm from '../NewCardForm/NewCardForm.js';
-import Column from '../../components/Column/Column.js';
+import Kanban from '../Kanban/Kanban.js';
 
 class App extends Component {
   constructor(){
@@ -11,7 +11,6 @@ class App extends Component {
     this.State = {
     }
   }
-
 
 
   render() {
@@ -23,17 +22,9 @@ class App extends Component {
           <h1>Kanban React</h1>
         </div>
 
-        <div className="todo-list">
-          <Column
-            cards= { this.props.cards }
-          />
-          <Column
-            cards= { this.props.cards }
-          />
-          <Column
-            cards= { this.props.cards }
-          />
-        </div>
+        <Kanban
+          cards={this.props.cards}
+        />
 
         <NewCardForm
           addCard={this.props.addCard}
