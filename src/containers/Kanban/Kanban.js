@@ -15,7 +15,8 @@ class Kanban extends Component {
   }
 
   sortTasksToColumns( columnStatus, props ) {
-    let cardArray = props.cards.cards;
+    let cardArray = this.props.cards.cards;
+    console.log( "cardArray", cardArray );
     let array = cardArray.filter( ( { status } ) => {
       return status === columnStatus;
     } );
