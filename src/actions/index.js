@@ -1,5 +1,5 @@
 export const ADD_CARD = 'ADD_CARD';
-export const MOVE_CARD = 'MOVE_CARD';
+export const ADVANCE_CARD = 'ADVANCE_CARD';
 
 
 export const addCard = (card) => {
@@ -9,3 +9,11 @@ export const addCard = (card) => {
     card: card
   };
 };
+
+export const advanceCard = ( card ) => {
+  console.log( 'advance card', card );
+  return {
+    type: ADVANCE_CARD,
+    card: card
+  }
+}
