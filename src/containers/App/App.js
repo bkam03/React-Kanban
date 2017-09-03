@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import { addCard } from '../../actions';
-import CardList from '../../components/CardList.js';
+import CardList from '../../components/Card/CardList.js';
 import NewCardForm from '../NewCardForm/NewCardForm.js';
-
+import Column from '../../components/Column/Column.js';
 
 class App extends Component {
   constructor(){
@@ -22,6 +22,7 @@ class App extends Component {
         <CardList
           cards= { this.props.cards }
         />
+        <Column />
         <NewCardForm
           addCard={this.props.addCard}
         />
