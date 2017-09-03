@@ -16,7 +16,7 @@ const cards = ( state = initialState, action ) => {
       console.log( 'reducer ADD_CARD', action.card );
       console.log( 'state', state );
       return {
-        cards: [...state, action.card ]
+        cards: [...state.cards, action.card ]
       }
       break;
     default:
