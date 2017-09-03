@@ -2,7 +2,7 @@ import React from 'react';
 
 const Card = ( {card} ) => {
   return (
-    <li>
+    <div>
       Title: {card.title}
       <br />
       Priority: {card.priority}
@@ -13,7 +13,7 @@ const Card = ( {card} ) => {
       <br />
       assignedTo: {card.assignedTo}
       <br />
-    </li>
+    </div>
   );
 };
 
