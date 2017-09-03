@@ -55,11 +55,3 @@ const ConnectedApp = connect(
 )(App);
 
 export default ConnectedApp;
-
-
-/* keep state separated
-for columns
-todos: [],
-inProgress: [],
-done: []
-*/
