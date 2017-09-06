@@ -30,13 +30,34 @@ const initialState = {
   ]*/
 }; //make array blank later
 
+function getCertainCardStatusFromArray( columnStatus, cards ) {
+
+    let array = cards.filter( ( { status } ) => {
+      return status === columnStatus;
+    } );
+    return array;
+  }
+
+function sortTasksByColumn(cards){
+
+  return {
+    queue: getCertainCardStatusFromArray( "Queue", cards ),
+    inProgress: getCertainCardStatusFromArray( "In Progress", cards ),
+    Complete: getCertainCardStatusFromArray( "Complete", cards )
+  };
+//  console.log( 'sortedTasksByColumn', sortedObj );
+//  return sortedObj;
+}
+
+
 const cards = ( state = initialState, action ) => {
   switch( action.type ) {
     case GET_CARDS:
-      console.log('reducer get_cards, action.cards', action.cards );
-      return [
+      return sortTasksByColumn( action.cards );
+
+      /*return [
         ...action.cards
-      ];
+      ];*/
     case ADD_CARD:
       return {
         cards: [...state.cards, action.card ]
