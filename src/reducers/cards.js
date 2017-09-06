@@ -1,4 +1,8 @@
-import { ADD_CARD, ADVANCE_CARD } from '../actions';
+import {
+  ADD_CARD,
+  ADVANCE_CARD,
+  GET_CARDS
+} from '../actions';
 
 const initialState = {
   /*cards : [
@@ -28,9 +32,11 @@ const initialState = {
 
 const cards = ( state = initialState, action ) => {
   switch( action.type ) {
+    case GET_CARDS:
+      return [
+        ...action.cards
+      ];
     case ADD_CARD:
-      console.log( 'reducer ADD_CARD', action.card );
-      console.log( 'state', state );
       return {
         cards: [...state.cards, action.card ]
       }
@@ -41,7 +47,6 @@ const cards = ( state = initialState, action ) => {
       //need to locate by id, has no ids because database would supply.
       console.log( 'action.card', action.card );
       return {
-
       };
     default:
       console.log( 'reducer default' );
