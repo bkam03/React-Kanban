@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Column from '../../components/Column/Column.js';
-
-
+/*import { getCards } from '../../actions/index.js';
+*/
 class Kanban extends Component {
   constructor(){
     super();
@@ -13,10 +13,12 @@ class Kanban extends Component {
       Complete: []
     };
   }
+  queryDatabaseForCards(){
+    return this.props.getCards();
+  }
 
   sortTasksToColumns( columnStatus, props ) {
-    let cardArray = this.props.cards.cards;
-    console.log( "cardArray", cardArray );
+    let cardArray = this.queryDatabaseForCards();
     let array = cardArray.filter( ( { status } ) => {
       return status === columnStatus;
     } );
@@ -32,6 +34,7 @@ class Kanban extends Component {
   }
 
   componentWillMount() {
+    console.log('will mount this.props', this.props);
     this.updateColumnArrays(this.props);
   }
 
@@ -40,7 +43,6 @@ class Kanban extends Component {
   }
 
   render() {
-    console.log( "kanban state", this.state );
     return (
       <div className="todo-list">
         <Column
@@ -59,5 +61,23 @@ class Kanban extends Component {
     );
   }
 }
+/*
+const mapDispatchToProps = ( dispatch ) => {
+  return {
+/*    getCards : () => {
+      dispatch( getCards() )
+    }
+  }
+}
+
+const ConnectedKanban = connect(
+  null,
+  mapDispatchToProps
+)( Kanban );
+
+export default ConnectedKanban;
+*/
+
+//problem is db receiving is firing async, and arriving after render.
 
 export default Kanban;
