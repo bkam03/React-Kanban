@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
-import { addCard } from '../../actions';
+import { addCard, getCards } from '../../actions/index.js';
 import NewCardForm from '../NewCardForm/NewCardForm.js';
 import Kanban from '../Kanban/Kanban.js';
 
@@ -14,7 +14,7 @@ class App extends Component {
 
 
   render() {
-    console.log( 'store', this.props.cards );
+    console.log( 'MAIN APP PROPS', this.props );
     return (
       <div>
 
@@ -24,6 +24,7 @@ class App extends Component {
 
         <Kanban
           cards={this.props.cards}
+          getCards = {this.props.getCards}
         />
 
         <NewCardForm
@@ -45,6 +46,9 @@ const mapDispatchToProps = ( dispatch ) => {
   return {//when you call this.props.addCard, its calling this.
     addCard: (card) => {
       dispatch(addCard(card))
+    },
+    getCards: () => {
+      dispatch( getCards() )
     }
   };
 };
