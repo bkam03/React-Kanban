@@ -1,7 +1,7 @@
 import { ADD_CARD, ADVANCE_CARD } from '../actions';
 
 const initialState = {
-  cards : [
+  /*cards : [
     {
       title: "test",
       priority: "none",
@@ -23,7 +23,7 @@ const initialState = {
       createdBy: "me",
       assignedTo: "you"
     }
-  ]
+  ]*/
 }; //make array blank later
 
 const cards = ( state = initialState, action ) => {
@@ -37,8 +37,9 @@ const cards = ( state = initialState, action ) => {
     case ADVANCE_CARD:
       console.log('reducer ADVANCE_CARD', action.card );
       let oldCardArray = [ ...state.cards ];
-      find the card by index, alter, return new array.
-      console.log( 'action.card', action );
+      //find the card by index, alter, return new array.
+      //need to locate by id, has no ids because database would supply.
+      console.log( 'action.card', action.card );
       return {
 
       };
