@@ -6,11 +6,10 @@ export const GET_CARDS = 'GET_CARDS';
 
 
 export const getCards = ( cards ) => {
-  console.log( 'firing getCards action' );
   return ( dispatch ) => {
     return getCardsFromDB()
-      .then( ( cards ) => {
-        console.log( 'From db', cards );
+      .then( ( { cards } ) => {
+        console.log( 'cards from db', cards );
         dispatch ( {
           type: GET_CARDS,
           cards: cards
