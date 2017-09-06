@@ -33,6 +33,7 @@ const initialState = {
 const cards = ( state = initialState, action ) => {
   switch( action.type ) {
     case GET_CARDS:
+      console.log('reducer get_cards, action.cards', action.cards );
       return [
         ...action.cards
       ];
