@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Column from '../../components/Column/Column.js';
-/*import { getCards } from '../../actions/index.js';
-*/
+import { getCards } from '../../actions/index.js';
+
 class Kanban extends Component {
   constructor(){
     super();
@@ -13,12 +13,10 @@ class Kanban extends Component {
       Complete: []
     };
   }
-  queryDatabaseForCards(){
-    return this.props.getCards();
-  }
+/*
 
   sortTasksToColumns( columnStatus, props ) {
-    let cardArray = this.queryDatabaseForCards();
+    let cardArray = this.props.getCards();
     let array = cardArray.filter( ( { status } ) => {
       return status === columnStatus;
     } );
@@ -31,18 +29,28 @@ class Kanban extends Component {
       inProgress: this.sortTasksToColumns( "In Progress", props ),
       Complete: this.sortTasksToColumns( "Complete", props )
     } );
-  }
+  }*/
 
   componentWillMount() {
-    console.log('will mount this.props', this.props);
-    this.updateColumnArrays(this.props);
+    this.setState( {
+      cards: this.props.getCards()
+    } );
   }
 
-  componentWillReceiveProps( nextprops ) {
-    this.updateColumnArrays(nextprops);
+  componentWillReceiveProps( {cards} ) {
+    this.setState({
+      queue: cards.queue,
+      inProgress: cards.inProgress,
+      Complete: cards.Complete
+    });
+/*    this.updateColumnArrays(nextprops);
+    this.setState( {
+      queue: cards
+    } ); */
   }
 
   render() {
+
     return (
       <div className="todo-list">
         <Column
@@ -61,22 +69,29 @@ class Kanban extends Component {
     );
   }
 }
-/*
+
+
+/*const mapStateToProps = (state) => {
+  return {
+    cards: state.cards
+  }
+}
+
 const mapDispatchToProps = ( dispatch ) => {
   return {
-/*    getCards : () => {
+    getCards : () => {
       dispatch( getCards() )
     }
   }
 }
 
 const ConnectedKanban = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )( Kanban );
 
-export default ConnectedKanban;
-*/
+export default ConnectedKanban;*/
+
 
 //problem is db receiving is firing async, and arriving after render.
 
