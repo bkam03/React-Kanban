@@ -1,4 +1,4 @@
-const cardsFromFakeDB = [
+const cards = [
   {
     title: "test",
     priority: "none",
@@ -24,13 +24,13 @@ const cardsFromFakeDB = [
 ];
 
 export const getCardsFromDB = () => new Promise((resolve, reject) => {
-  setTimeout(() => resolve(cardsFromFakeDB), 500);
+  setTimeout(() => resolve(cards), 500);
 });
 
 export const addCardToDB = (card) => new Promise((resolve, reject) => {
   setTimeout(() => {
     card._id = Math.random();
-    cardsFromFakeDB.push(card);
-    resolve(cardsFromFakeDB);
+    cards.push(card);
+    resolve(cards);
   }, 500);
 });
