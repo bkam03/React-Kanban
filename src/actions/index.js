@@ -1,19 +1,22 @@
+import { getCardsFromDB, addCardToDB } from '../lib/fakedb.js';
+
 export const ADD_CARD = 'ADD_CARD';
 export const ADVANCE_CARD = 'ADVANCE_CARD';
 export const GET_CARDS = 'GET_CARDS';
 
-import { getCardsFromDB, addCardToDB } from '../lib/fakedb.js';
 
 export const getCards = ( cards ) => {
-  return( ( dispatch ) => {
+  console.log( 'firing getCards action' );
+  return ( dispatch ) => {
     return getCardsFromDB()
       .then( ( cards ) => {
-        dispatch {
+        console.log( 'From db', cards );
+        dispatch ( {
           type: GET_CARDS,
           cards: cards
-        }
-      } )
-  } );
+        } );
+      } );
+  }
 };
 
 export const addCard = (card) => {
