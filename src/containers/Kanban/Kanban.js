@@ -50,4 +50,26 @@ class Kanban extends Component {
   }
 }
 
-export default Kanban;
+//export default Kanban;
+
+//transfers store info to props
+const mapStateToProps = ( state ) => {
+  return {
+    cards: state.cards
+  };
+};
+//this allows components to dispatch actions to reducer
+const mapDispatchToProps = ( dispatch ) => {
+  return {//when you call this.props.addCard, its calling this.
+    getCards: () => {
+      dispatch( getCards() )
+    }
+  };
+};
+
+const ConnectedKanban = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Kanban);
+
+export default ConnectedKanban;
