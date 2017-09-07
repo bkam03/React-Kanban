@@ -1,5 +1,6 @@
 const cards = [
   {
+    id: '1',
     title: "test",
     priority: "none",
     status: "Queue",
@@ -7,13 +8,15 @@ const cards = [
     assignedTo: "you"
   },
   {
+    id: '2',
     title: "2",
     priority: "low",
-    status: "In Progress",
+    status: "InProgress",
     createdBy: "me",
     assignedTo: "you"
   },
   {
+    id: '3',
     title: "test3",
     priority: "none",
     status: "Complete",
