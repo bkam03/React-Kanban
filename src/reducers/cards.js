@@ -37,8 +37,14 @@ const cards = ( state = initialState, action ) => {
         ...action.cards
       ];*/
     case ADD_CARD:
+      let newCard = action.card;
+      let queueColumnToModify = state.Queue;
+      queueColumnToModify.push( newCard );
+      console.log( 'returning column', queueColumnToModify );
       return {
-        cards: [...state.cards, action.card ]
+        Queue: queueColumnToModify,
+        InProgress: state.InProgress,
+        Complete: state.Complete
       }
     case ADVANCE_CARD:
       let columnName = action.card.status;
@@ -76,12 +82,7 @@ const cards = ( state = initialState, action ) => {
       }
 
       console.log( 'cards', cards );
-      /*
-      cardArray[ indexOfCardBeingEdited ].status = currentCardState;
-      console.log( '@@@@@@@@@@@@@@@@modded cardArray', cardArray );
-      return {
-        columnName: cardArray
-      };*/
+
       return {
         Queue: cards.Queue,
         InProgress: cards.InProgress,
