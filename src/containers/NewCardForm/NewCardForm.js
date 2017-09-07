@@ -19,6 +19,13 @@ get this field to work first, then make the others.
   handleNewCardSubmit( event ) {
     console.log( 'submit', this.state );
     this.props.addCard( this.state );
+    this.setState({
+      title: "",
+      priority: "",
+      createdBy: "",
+      assignedTo: ""
+    });
+    console.log( 'newcardform state', this.state );
   }
 
   handleInput( event ) {
@@ -34,6 +41,7 @@ get this field to work first, then make the others.
       <form>
         {
           fieldNames.map( ( fieldName ) => {
+            console.log( 'newformRender', this.state[fieldName] );
             return (
               <div>
                 <label for={ fieldName }>{ fieldName }</label>
@@ -42,6 +50,7 @@ get this field to work first, then make the others.
                   placeholder={ fieldName }
                   name={ fieldName }
                   id={ fieldName }
+                  value={this.state[fieldName]}
                   onChange={this.handleInput.bind(this)}
                 />
               </div>
