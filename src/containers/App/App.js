@@ -24,11 +24,10 @@ class App extends Component {
 
         <Kanban
           cards={this.props.cards}
-          getCards = {this.props.getCards}
         />
 
         <NewCardForm
-          addCard={this.props.addCard}
+
         />
 
       </div>
@@ -41,7 +40,7 @@ const mapStateToProps = ( state ) => {
     cards: state.cards
   };
 };
-//this allows components to dispatch actions to reducer
+/*//this allows components to dispatch actions to reducer
 const mapDispatchToProps = ( dispatch ) => {
   return {//when you call this.props.addCard, its calling this.
     addCard: (card) => {
@@ -52,10 +51,10 @@ const mapDispatchToProps = ( dispatch ) => {
     }
   };
 };
-
+*/
 const ConnectedApp = connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(App);
 
 export default ConnectedApp;
