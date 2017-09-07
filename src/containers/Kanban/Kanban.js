@@ -13,23 +13,6 @@ class Kanban extends Component {
       Complete: []
     };
   }
-/*
-
-  sortTasksToColumns( columnStatus, props ) {
-    let cardArray = this.props.getCards();
-    let array = cardArray.filter( ( { status } ) => {
-      return status === columnStatus;
-    } );
-    return array;
-  }
-
-  updateColumnArrays(props){
-    this.setState( {
-      queue: this.sortTasksToColumns( "Queue", props ),
-      inProgress: this.sortTasksToColumns( "In Progress", props ),
-      Complete: this.sortTasksToColumns( "Complete", props )
-    } );
-  }*/
 
   componentWillMount() {
     this.setState( {
@@ -44,10 +27,7 @@ class Kanban extends Component {
       InProgress: cards.InProgress,
       Complete: cards.Complete
     });
-/*    this.updateColumnArrays(nextprops);
-    this.setState( {
-      queue: cards
-    } ); */
+
   }
 
   render() {
@@ -69,30 +49,5 @@ class Kanban extends Component {
     );
   }
 }
-
-
-/*const mapStateToProps = (state) => {
-  return {
-    cards: state.cards
-  }
-}
-
-const mapDispatchToProps = ( dispatch ) => {
-  return {
-    getCards : () => {
-      dispatch( getCards() )
-    }
-  }
-}
-
-const ConnectedKanban = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)( Kanban );
-
-export default ConnectedKanban;*/
-
-
-//problem is db receiving is firing async, and arriving after render.
 
 export default Kanban;
