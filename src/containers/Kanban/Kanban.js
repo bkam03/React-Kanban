@@ -8,8 +8,8 @@ class Kanban extends Component {
   constructor(){
     super();
     this.state = {
-      queue: [],
-      inProgress: [],
+      Queue: [],
+      InProgress: [],
       Complete: []
     };
   }
@@ -38,9 +38,10 @@ class Kanban extends Component {
   }
 
   componentWillReceiveProps( {cards} ) {
+
     this.setState({
-      queue: cards.queue,
-      inProgress: cards.inProgress,
+      Queue: cards.Queue,
+      InProgress: cards.InProgress,
       Complete: cards.Complete
     });
 /*    this.updateColumnArrays(nextprops);
@@ -50,16 +51,15 @@ class Kanban extends Component {
   }
 
   render() {
-
     return (
       <div className="todo-list">
         <Column
-          cards= { this.state.queue }
+          cards= { this.state.Queue }
           columnName="Queue"
         />
         <Column
-          cards= { this.state.inProgress }
-          columnName="In Progress"
+          cards= { this.state.InProgress }
+          columnName="InProgress"
         />
         <Column
           cards= { this.state.Complete }
