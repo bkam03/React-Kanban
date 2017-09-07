@@ -14,7 +14,6 @@ class App extends Component {
 
 
   render() {
-    console.log( 'MAIN APP PROPS', this.props );
     return (
       <div>
 
