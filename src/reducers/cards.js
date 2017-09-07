@@ -5,29 +5,6 @@ import {
 } from '../actions';
 
 const initialState = {
-  /*cards : [
-    {
-      title: "test",
-      priority: "none",
-      status: "Queue",
-      createdBy: "me",
-      assignedTo: "you"
-    },
-    {
-      title: "2",
-      priority: "low",
-      status: "In Progress",
-      createdBy: "me",
-      assignedTo: "you"
-    },
-    {
-      title: "test3",
-      priority: "none",
-      status: "Complete",
-      createdBy: "me",
-      assignedTo: "you"
-    }
-  ]*/
 }; //make array blank later
 
 function getCertainCardStatusFromArray( columnStatus, cards ) {
@@ -39,12 +16,13 @@ function getCertainCardStatusFromArray( columnStatus, cards ) {
   }
 
 function sortTasksByColumn(cards){
-
-  return {
-    queue: getCertainCardStatusFromArray( "Queue", cards ),
-    inProgress: getCertainCardStatusFromArray( "In Progress", cards ),
+  let newCardState = {
+    Queue: getCertainCardStatusFromArray( "Queue", cards ),
+    InProgress: getCertainCardStatusFromArray( "InProgress", cards ),
     Complete: getCertainCardStatusFromArray( "Complete", cards )
   };
+  console.log('postSortTasks', newCardState );
+  return newCardState;
 //  console.log( 'sortedTasksByColumn', sortedObj );
 //  return sortedObj;
 }
@@ -63,11 +41,25 @@ const cards = ( state = initialState, action ) => {
         cards: [...state.cards, action.card ]
       }
     case ADVANCE_CARD:
-      console.log('reducer ADVANCE_CARD', action.card );
-      let oldCardArray = [ ...state.cards ];
+      let columnName = action.card.status;
+
+      console.log( 'putting into cardArray', state );
+      let cardArray = state[columnName];
+      console.log( 'cardArray', cardArray );
+      let currentCardId = action.card.id;
+      console.log( 'currentcard id', currentCardId );
+      let indexOfCardBeingEdited = -1;
+      cardArray.forEach( ( card, index ) => {
+        if( card.id === currentCardId ){
+          indexOfCardBeingEdited = index;
+        }
+      } );
+      console.log( 'index', indexOfCardBeingEdited );
+
+
+
       //find the card by index, alter, return new array.
       //need to locate by id, has no ids because database would supply.
-      console.log( 'action.card', action.card );
       return {
       };
     default:
@@ -76,5 +68,6 @@ const cards = ( state = initialState, action ) => {
       break;
   }
 }
+
 
 export default cards;
