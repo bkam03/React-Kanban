@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { addCard } from '../../actions/index.js';
 
 class NewCardForm extends Component {
   constructor(){
@@ -54,4 +55,26 @@ get this field to work first, then make the others.
   };
 };
 
-export default NewCardForm;
+//export default NewCardForm;
+
+//transfers store info to props
+const mapStateToProps = ( state ) => {
+  return {
+    cards: state.cards
+  };
+};
+//this allows components to dispatch actions to reducer
+const mapDispatchToProps = ( dispatch ) => {
+  return {//when you call this.props.addCard, its calling this.
+    addCard: (card) => {
+      dispatch(addCard(card))
+    }
+  };
+};
+
+const ConnectedForm = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NewCardForm);
+
+export default ConnectedForm;
