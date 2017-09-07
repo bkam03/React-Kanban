@@ -42,25 +42,50 @@ const cards = ( state = initialState, action ) => {
       }
     case ADVANCE_CARD:
       let columnName = action.card.status;
-
-      console.log( 'putting into cardArray', state );
-      let cardArray = state[columnName];
-      console.log( 'cardArray', cardArray );
+      let cards = {
+        Queue: state.Queue,
+        InProgress: state.InProgress,
+        Complete: state.Complete
+      };
+      let columnOfConcern = cards[columnName];
       let currentCardId = action.card.id;
-      console.log( 'currentcard id', currentCardId );
       let indexOfCardBeingEdited = -1;
-      cardArray.forEach( ( card, index ) => {
+
+      columnOfConcern.forEach( ( card, index ) => {
         if( card.id === currentCardId ){
           indexOfCardBeingEdited = index;
         }
       } );
-      console.log( 'index', indexOfCardBeingEdited );
 
+      let looseCard = columnOfConcern.splice( indexOfCardBeingEdited, 1 ).pop();
 
+      switch( columnName ){
+        case "Queue":
+          looseCard.status = "InProgress";
+          console.log( 'upgrading to InProgress');
+          cards.InProgress.push( looseCard );
+          break;
+        case "InProgress":
+          looseCard.status = "Complete";
+          console.log( 'upgrading to Complete');
+          cards.Complete.push( looseCard );
+          break;
+        default:
+          console.log( 'defaulting for advancecard');
+          return state;
+      }
 
-      //find the card by index, alter, return new array.
-      //need to locate by id, has no ids because database would supply.
+      console.log( 'cards', cards );
+      /*
+      cardArray[ indexOfCardBeingEdited ].status = currentCardState;
+      console.log( '@@@@@@@@@@@@@@@@modded cardArray', cardArray );
       return {
+        columnName: cardArray
+      };*/
+      return {
+        Queue: cards.Queue,
+        InProgress: cards.InProgress,
+        Complete: cards.Complete
       };
     default:
       console.log( 'reducer default' );
