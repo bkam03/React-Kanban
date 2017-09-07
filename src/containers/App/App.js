@@ -14,6 +14,7 @@ class App extends Component {
 
 
   render() {
+    console.log( 'render in app', this.props.cards );
     return (
       <div>
 
