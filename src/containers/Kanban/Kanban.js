@@ -38,7 +38,7 @@ class Kanban extends Component {
   }
 
   componentWillReceiveProps( {cards} ) {
-
+    console.log( 'kanban new props', cards );
     this.setState({
       Queue: cards.Queue,
       InProgress: cards.InProgress,
