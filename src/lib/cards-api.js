@@ -12,3 +12,16 @@ export const getCardsFromServer = () => {
     xhrRequest.send();
   } );
 };
+
+export const addCardToServer = ( card ) => {
+  console.log( 'in add card to server' );
+  return new Promise( ( resolve, reject ) => {
+    let xhrRequest = new XMLHttpRequest();
+    xhrRequest.addEventListener( 'load', function(){
+      console.log( 'addcardtoserver', card );
+      resolve();
+    } );
+    xhrRequest.open( 'POST', '/createcard' );
+    xhrRequest.send();
+  } );
+};

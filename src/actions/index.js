@@ -1,5 +1,5 @@
 import { getCardsFromDB, addCardToDB } from '../lib/fakedb.js';
-import { getCardsFromServer } from '../lib/cards-api.js';
+import { getCardsFromServer, addCardToServer } from '../lib/cards-api.js';
 
 export const ADD_CARD = 'ADD_CARD';
 export const ADVANCE_CARD = 'ADVANCE_CARD';
@@ -8,7 +8,8 @@ export const GET_CARDS = 'GET_CARDS';
 
 export const getCards = () => {
   return ( dispatch ) => {
-    return getCardsFromServer()
+    //return getCardsFromServer()
+    return getCardsFromDB()
       .then( ( cards ) => {
         console.log( 'obj from db', cards );
         dispatch ( {
@@ -20,11 +21,18 @@ export const getCards = () => {
 };
 
 export const addCard = (card) => {
-  console.log( 'addCard action', card )
-  return {
-    type: ADD_CARD,
-    card: card
-  };
+  console.log( 'addCard action', card );
+  return( dispatch ) => {
+
+    addCardToServer( card )
+      .then( () => {
+        console.log( 'added card to server' );
+        return {
+          type: ADD_CARD,
+          card: card
+        };
+      } );
+  }
 };
 
 export const advanceCard = ( card ) => {
