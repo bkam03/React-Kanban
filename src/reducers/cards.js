@@ -78,7 +78,6 @@ const cards = ( state = initialState, action ) => {
           break;
         default:
           console.log( 'defaulting for advancecard');
-          return state;
       }
 
       console.log( 'cards', cards );
