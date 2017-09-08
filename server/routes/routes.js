@@ -1,12 +1,12 @@
 const express = require( 'express' );
 
 const db = require( '../models' );
+Card = db.Card;
 
 const router = express.Router();
 
 router.post( '/createcard', ( req, res ) => {
-  console.log( 'create card' );
-  console.log( 'post body', req.body );
+  console.log( 'create card', req.body );
 /*  Card.create( {
     title:
     status:
