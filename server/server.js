@@ -8,7 +8,7 @@ const app = express();
 
 app.use( bp.urlencoded() );
 
-app.use( '/', routes );
+app.use( '/api', routes );
 
 const server = app.listen( PORT, () => {
   console.log( `server running on ${ PORT }`);
