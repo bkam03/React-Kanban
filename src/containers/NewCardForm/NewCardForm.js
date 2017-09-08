@@ -41,7 +41,6 @@ get this field to work first, then make the others.
       <form>
         {
           fieldNames.map( ( fieldName ) => {
-            console.log( 'newformRender', this.state[fieldName] );
             return (
               <div>
                 <label for={ fieldName }>{ fieldName }</label>
