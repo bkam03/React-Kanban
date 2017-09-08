@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "bk",
-    "password": "kanban",
+    "username": "bk2",
+    "password": "pokestop",
     "database": "kanban",
     "host": "127.0.0.1",
     "dialect": "postgres"
