@@ -6,6 +6,14 @@ const router = express.Router();
 
 router.post( '/createcard', ( req, res ) => {
   console.log( 'create card' );
+  console.log( 'post body', req.body );
+/*  Card.create( {
+    title:
+    status:
+    priority:
+    createdBy:
+    assignedTo:
+  } );*/
   res.end();
 } );
 
