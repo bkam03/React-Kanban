@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 8080;
 
 const app = express();
 
-app.use( bp.urlencoded() );
+app.use( bp.json( { extended: true } ) );
 
 app.use( '/api', routes );
 
