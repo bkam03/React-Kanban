@@ -26,11 +26,11 @@ export const addCard = (card) => {
 
     addCardToServer( card )
       .then( () => {
-        console.log( 'added card to server' );
-        return {
+        console.log( 'added card to server', card );
+        dispatch( {
           type: ADD_CARD,
           card: card
-        };
+        } );
       } );
   }
 };
