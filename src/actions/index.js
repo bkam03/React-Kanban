@@ -1,5 +1,9 @@
 import { getCardsFromDB, addCardToDB } from '../lib/fakedb.js';
-import { getCardsFromServer, addCardToServer } from '../lib/cards-api.js';
+import {
+  getCardsFromServer,
+  addCardToServer,
+  editCardInServer
+} from '../lib/cards-api.js';
 
 export const ADD_CARD = 'ADD_CARD';
 export const ADVANCE_CARD = 'ADVANCE_CARD';
@@ -33,10 +37,15 @@ export const addCard = (card) => {
 };
 
 export const advanceCard = ( card ) => {
-  return {
-    type: MOVE_CARD,
-    card: card,
-    movement: ADVANCE_CARD
+  return( dispatch ) => {
+    editCardInServer( card )
+      .then( () => {
+        dispatch( {
+          type: MOVE_CARD,
+          card: card,
+          movement: ADVANCE_CARD
+        } );
+      })
   }
 }
 

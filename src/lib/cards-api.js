@@ -22,3 +22,16 @@ export const addCardToServer = ( card ) => {
     xhrRequest.send( JSON.stringify(card) );
   } );
 };
+
+export const editCardInServer = ( card ) => {
+  return new Promise( ( resolve, reject ) => {
+    let xhrRequest = new XMLHttpRequest();
+    xhrRequest.addEventListener( 'load', function(){
+      console.log( 'edit card reached server' );
+      resolve();
+    } );
+    xhrRequest.open( 'PUT', '/updatecard' );
+    xhrRequest.setRequestHeader( "Content-Type", "application/json" );
+    xhrRequest.send( JSON.stringify( card ) );
+  } );
+}
