@@ -6,6 +6,7 @@ import {
   ADVANCE_CARD,
   REGRESS_CARD
 } from '../../actions/';
+import './Card.css';
 
 class Card extends Component {
 
@@ -24,11 +25,16 @@ class Card extends Component {
     this.props.regressCard( cardAndVelocity );
   }
 
+  handleTasKDelete(){
+
+  }
+
   render(){
     let card = this.props.card;
+
     return (
       <div>
-        <div>
+        <div class="hidden">
           Title: {card.title}
           <br />
           Priority: {card.priority}
@@ -48,6 +54,8 @@ class Card extends Component {
     );
   }
 };
+
+
 
 const mapDispatchToProps = ( dispatch ) => {
   return {
