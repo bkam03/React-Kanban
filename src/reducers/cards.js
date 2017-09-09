@@ -8,7 +8,7 @@ const initialState = {
 }; //make array blank later
 
 function getCertainCardStatusFromArray( columnStatus, cards ) {
-
+  console.log('cards in filterfunction', cards );
     let array = cards.filter( ( { status } ) => {
       return status === columnStatus;
     } );
@@ -31,7 +31,9 @@ function sortTasksByColumn(cards){
 const cards = ( state = initialState, action ) => {
   switch( action.type ) {
     case GET_CARDS:
-      return sortTasksByColumn( action.cards );
+      let cardArray = JSON.parse( action.cards ).cards;
+      console.log( 'get cards in reducer', cardArray );
+      return sortTasksByColumn( cardArray );
 
       /*return [
         ...action.cards
