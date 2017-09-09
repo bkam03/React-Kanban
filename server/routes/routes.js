@@ -52,14 +52,22 @@ router.put( '/updatecard', ( req, res ) => {
       console.log( 'defaulting movement of card in server.');
   }
 
-
-  Cards.update( {
-    status: cardToUpdate.status
-  },{
-    where: {
-      id: cardToUpdate.id
-    }
-  } );
+  if( cardToUpdate.status === undefined ){
+    console.log( 'out of array in move' );
+    Cards.destroy( {
+      where : {
+        id: cardToUpdate.id
+      }
+    } );
+  } else {
+    Cards.update( {
+      status: cardToUpdate.status
+    },{
+      where: {
+        id: cardToUpdate.id
+      }
+    } );
+  }
   res.end();
 } );
 
