@@ -5,8 +5,8 @@ export const getCardsFromServer = () => {
   return new Promise( ( resolve, reject ) => {
     let xhrRequest = new XMLHttpRequest();
     xhrRequest.addEventListener( 'load', function(){
-      console.log( 'payload received from server', this );
-      resolve( this );
+      console.log( 'payload received from server', this.response );
+      resolve( this.response );
     } );
     xhrRequest.open( "GET", '/readcards' );
     xhrRequest.send();
