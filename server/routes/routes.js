@@ -1,13 +1,13 @@
 const express = require( 'express' );
 
 const db = require( '../models' );
-Card = db.card;
+Cards = db.card;
 
 const router = express.Router();
 
 router.post( '/createcard', ( req, res ) => {
   let newCard = req.body;
-  Card.create( {
+  Cards.create( {
     title: newCard.title,
     status: newCard.status,
     priority: newCard.priority,
@@ -15,7 +15,6 @@ router.post( '/createcard', ( req, res ) => {
     assignedTo: newCard.assignedTo
   } )
   .then( ( card ) => {
-    console.log( 'post then', card );
     res.end();
   } )
   .catch( ( err ) => {
@@ -24,10 +23,8 @@ router.post( '/createcard', ( req, res ) => {
 } );
 
 router.get( '/readcards', ( req, res ) => {
-  console.log( 'read cards' );
-    Card.findAll()
+    Cards.findAll()
     .then( ( cards ) => {
-      console.log('got cards', cards );
       res.json( {cards: cards} );
     })
     .catch((err) => {
@@ -36,7 +33,15 @@ router.get( '/readcards', ( req, res ) => {
 } );
 
 router.put( '/updatecard', ( req, res ) => {
-  console.log( 'update card' );
+  console.log( 'update card', req.body.id );
+  Cards.update( {
+    //update stuff here
+    status: "InProgress"
+  },{
+    where: {
+      id: req.body.id
+    }
+  } );
   res.end();
 } );
 

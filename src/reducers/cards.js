@@ -87,9 +87,6 @@ const cards = ( state = initialState, action ) => {
       //push card into correct column or delete if necessary
       if( looseCard.status !== undefined ) {
         cards[ looseCard.status ].push( looseCard );
-        //edit card in server here.
-      } else {
-        //delete card from server here.
       }
 
       return {
