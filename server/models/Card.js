@@ -1,5 +1,5 @@
 module.exports = function( sequelize, DataTypes ) {
-  var Card = sequelize.define( "Card", {
+  var card = sequelize.define( "card", {
     title: DataTypes.STRING,
     status: DataTypes.STRING,
     priority: DataTypes.STRING,
@@ -9,10 +9,10 @@ module.exports = function( sequelize, DataTypes ) {
   }, {
     classMethods: {
       associate: function( models ) {
-
+      card.hasMany( models.Task )
       }
     }
   } );
 
-  return Card;
+  return card;
 }
