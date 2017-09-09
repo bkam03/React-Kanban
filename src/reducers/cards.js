@@ -37,8 +37,6 @@ function findCardInArray( array, cardId ){
 
 const cards = ( state = initialState, action ) => {
 
-
-
   switch( action.type ) {
     case GET_CARDS:
       let cardArray = JSON.parse( action.cards ).cards;
@@ -57,7 +55,6 @@ const cards = ( state = initialState, action ) => {
     case MOVE_CARD:
       let columnName = action.card.status;
       let movementDirection = action.movement;
-      console.log( 'movement direction', movementDirection );
       let cards = {
         Queue: state.Queue,
         InProgress: state.InProgress,
@@ -71,7 +68,7 @@ const cards = ( state = initialState, action ) => {
       //pull card from old column.
       let looseCard = columnOfConcern.splice( indexOfCardBeingEdited, 1 ).pop();
 
-      let statusSpectrum = [ 'Queue', 'InProgress', 'Complete']
+      let statusSpectrum = [ 'Queue', 'InProgress', 'Complete'];
 
       let looseCardStatusIndex = statusSpectrum.indexOf( looseCard.status );
 
@@ -94,19 +91,6 @@ const cards = ( state = initialState, action ) => {
       } else {
         //delete card from server here.
       }
-/*      switch( columnName ){
-        case "Queue":
-          looseCard.status = "InProgress";
-          cards.InProgress.push( looseCard );
-          break;
-        case "InProgress":
-          looseCard.status = "Complete";
-          cards.Complete.push( looseCard );
-          break;
-        default:
-          console.log( 'defaulting for advancecard');
-      }*/
-
 
       return {
         Queue: cards.Queue,
