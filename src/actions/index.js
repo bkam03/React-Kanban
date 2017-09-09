@@ -10,7 +10,6 @@ export const MOVE_CARD ='MOVE_CARD';
 export const getCards = () => {
   return ( dispatch ) => {
     return getCardsFromServer()
-    //return getCardsFromDB()
       .then( ( cards ) => {
         dispatch ( {
           type: GET_CARDS,
@@ -21,12 +20,10 @@ export const getCards = () => {
 };
 
 export const addCard = (card) => {
-  console.log( 'addCard action', card );
   return( dispatch ) => {
 
     addCardToServer( card )
       .then( () => {
-        console.log( 'added card to server', card );
         dispatch( {
           type: ADD_CARD,
           card: card
@@ -36,7 +33,6 @@ export const addCard = (card) => {
 };
 
 export const advanceCard = ( card ) => {
-  console.log( 'advance card', card );
   return {
     type: MOVE_CARD,
     card: card,
@@ -45,7 +41,6 @@ export const advanceCard = ( card ) => {
 }
 
 export const regressCard = ( card ) => {
-  console.log( 'regress card', card );
   return {
     type: MOVE_CARD,
     card: card,
