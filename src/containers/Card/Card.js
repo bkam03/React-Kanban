@@ -1,14 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { advanceCard, regressCard } from '../../actions/';
+import {
+  advanceCard,
+  regressCard,
+  ADVANCE_CARD,
+  REGRESS_CARD
+} from '../../actions/';
 
 class Card extends Component {
 
   handleTaskAdvance(){
-    this.props.advanceCard( this.props.card );
+    let cardAndVelocity = {
+      card: this.props.card,
+      direction: ADVANCE_CARD
+    };
+    this.props.advanceCard( cardAndVelocity );
   }
   handleTaskRegress(){
-    this.props.regressCard( this.props.card );
+    let cardAndVelocity = {
+      card: this.props.card,
+      direction: REGRESS_CARD
+    };
+    this.props.regressCard( cardAndVelocity );
   }
 
   render(){
