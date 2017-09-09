@@ -36,23 +36,28 @@ export const addCard = (card) => {
   }
 };
 
-export const advanceCard = ( card ) => {
+export const advanceCard = ( data ) => {
   return( dispatch ) => {
-    editCardInServer( card )
+    editCardInServer( data )
       .then( () => {
         dispatch( {
           type: MOVE_CARD,
-          card: card,
+          card: data.card,
           movement: ADVANCE_CARD
         } );
       })
   }
 }
 
-export const regressCard = ( card ) => {
-  return {
-    type: MOVE_CARD,
-    card: card,
-    movement: REGRESS_CARD
+export const regressCard = ( data ) => {
+  return( dispatch ) => {
+    editCardInServer( data )
+      .then( () => {
+        dispatch( {
+          type: MOVE_CARD,
+          card: data.card,
+          movement: REGRESS_CARD
+        } );
+      })
   }
 }
