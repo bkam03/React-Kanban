@@ -5,6 +5,7 @@ export const ADD_CARD = 'ADD_CARD';
 export const ADVANCE_CARD = 'ADVANCE_CARD';
 export const GET_CARDS = 'GET_CARDS';
 export const REGRESS_CARD = 'REGRESS_CARD';
+export const MOVE_CARD ='MOVE_CARD';
 
 export const getCards = () => {
   return ( dispatch ) => {
@@ -37,15 +38,17 @@ export const addCard = (card) => {
 export const advanceCard = ( card ) => {
   console.log( 'advance card', card );
   return {
-    type: ADVANCE_CARD,
-    card: card
+    type: MOVE_CARD,
+    card: card,
+    movement: ADVANCE_CARD
   }
 }
 
 export const regressCard = ( card ) => {
   console.log( 'regress card', card );
   return {
-    type: REGRESS_CARD,
-    card: card
+    type: MOVE_CARD,
+    card: card,
+    movement: REGRESS_CARD
   }
 }
