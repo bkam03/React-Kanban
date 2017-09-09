@@ -5,11 +5,9 @@ import { advanceCard, regressCard } from '../../actions/';
 class Card extends Component {
 
   handleTaskAdvance(){
-    console.log( "handleTaskAdvance", this.props.card );
     this.props.advanceCard( this.props.card );
   }
   handleTaskRegress(){
-    console.log( "handleTaskRegress", this.props.card );
     this.props.regressCard( this.props.card );
   }
 
