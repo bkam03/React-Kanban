@@ -33,13 +33,31 @@ router.get( '/readcards', ( req, res ) => {
 } );
 
 router.put( '/updatecard', ( req, res ) => {
-  console.log( 'update card', req.body.id );
+  let cardToUpdate = req.body.card;
+  let cardDirection = req.body.direction;
+
+  let statusSpectrum = [ 'Queue', 'InProgress', 'Complete'];
+
+  let cardToUpdateIndex = statusSpectrum.indexOf( cardToUpdate.status );
+
+  //modify card status
+  switch( cardDirection ){
+    case "ADVANCE_CARD":
+      cardToUpdate.status = statusSpectrum[ cardToUpdateIndex + 1 ];
+      break;
+    case "REGRESS_CARD":
+      cardToUpdate.status = statusSpectrum[ cardToUpdateIndex - 1 ];
+      break;
+    default:
+      console.log( 'defaulting movement of card in server.');
+  }
+
+
   Cards.update( {
-    //update stuff here
-    status: "InProgress"
+    status: cardToUpdate.status
   },{
     where: {
-      id: req.body.id
+      id: cardToUpdate.id
     }
   } );
   res.end();
