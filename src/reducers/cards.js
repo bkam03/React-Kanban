@@ -2,7 +2,8 @@ import {
   ADD_CARD,
   ADVANCE_CARD,
   REGRESS_CARD,
-  GET_CARDS
+  GET_CARDS,
+  MOVE_CARD
 } from '../actions';
 
 const initialState = {
@@ -24,6 +25,7 @@ function sortTasksByColumn(cards){
   return newCardState;
 }
 
+
 function findCardInArray( array, cardId ){
   let indexOfCard = null;
   array.forEach( ( card, index ) => {
@@ -34,6 +36,9 @@ function findCardInArray( array, cardId ){
 }
 
 const cards = ( state = initialState, action ) => {
+
+
+
   switch( action.type ) {
     case GET_CARDS:
       let cardArray = JSON.parse( action.cards ).cards;
@@ -49,11 +54,10 @@ const cards = ( state = initialState, action ) => {
         InProgress: state.InProgress,
         Complete: state.Complete
       }
-
-    case ADVANCE_CARD:
-
+    case MOVE_CARD:
       let columnName = action.card.status;
-      console.log( 'columnName', columnName );
+      let movementDirection = action.movement;
+      console.log( 'movement direction', movementDirection );
       let cards = {
         Queue: state.Queue,
         InProgress: state.InProgress,
@@ -61,20 +65,36 @@ const cards = ( state = initialState, action ) => {
       };
       let columnOfConcern = cards[columnName];
       let currentCardId = action.card.id;
-      let indexOfCardBeingEdited = findCardInArray( columnOfConcern, currentCardId );
 
-      //find card to edit in state.
-/*      columnOfConcern.forEach( ( card, index ) => {
-        if( card.id === currentCardId ){
-          indexOfCardBeingEdited = index;
-        }
-      } );*/
+      let indexOfCardBeingEdited = findCardInArray( columnOfConcern, currentCardId );
 
       //pull card from old column.
       let looseCard = columnOfConcern.splice( indexOfCardBeingEdited, 1 ).pop();
 
-      //push card into correct column
-      switch( columnName ){
+      let statusSpectrum = [ 'Queue', 'InProgress', 'Complete']
+
+      let looseCardStatusIndex = statusSpectrum.indexOf( looseCard.status );
+
+      //modify card status
+      switch( movementDirection ){
+        case ADVANCE_CARD:
+          looseCard.status = statusSpectrum[ looseCardStatusIndex + 1 ];
+          break;
+        case REGRESS_CARD:
+          looseCard.status = statusSpectrum[ looseCardStatusIndex - 1 ];
+          break;
+        default:
+          console.log( 'defaulting for advancecard');
+      }
+
+      //push card into correct column or delete if necessary
+      if( looseCard.status !== undefined ) {
+        cards[ looseCard.status ].push( looseCard );
+        //edit card in server here.
+      } else {
+        //delete card from server here.
+      }
+/*      switch( columnName ){
         case "Queue":
           looseCard.status = "InProgress";
           cards.InProgress.push( looseCard );
@@ -85,7 +105,7 @@ const cards = ( state = initialState, action ) => {
           break;
         default:
           console.log( 'defaulting for advancecard');
-      }
+      }*/
 
 
       return {
@@ -93,9 +113,6 @@ const cards = ( state = initialState, action ) => {
         InProgress: cards.InProgress,
         Complete: cards.Complete
       };
-
-    case REGRESS_CARD:
-
 
     default:
       console.log( 'reducer default' );
