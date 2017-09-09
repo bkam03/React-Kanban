@@ -1,11 +1,9 @@
 //target endpoint: /api/cards => returns jsoen
 
 export const getCardsFromServer = () => {
-  console.log( 'invoking getCardsFromServer' );
   return new Promise( ( resolve, reject ) => {
     let xhrRequest = new XMLHttpRequest();
     xhrRequest.addEventListener( 'load', function(){
-      console.log( 'payload received from server', this.response );
       resolve( this.response );
     } );
     xhrRequest.open( "GET", '/readcards' );
@@ -14,11 +12,9 @@ export const getCardsFromServer = () => {
 };
 
 export const addCardToServer = ( card ) => {
-  console.log( 'in add card to server', card );
   return new Promise( ( resolve, reject ) => {
     let xhrRequest = new XMLHttpRequest();
     xhrRequest.addEventListener( 'load', function(){
-      console.log( 'addcard server responded' );
       resolve();
     } );
     xhrRequest.open( 'POST', '/createcard', true );
