@@ -90,7 +90,6 @@ const cards = ( state = initialState, action ) => {
     default:
       console.log( 'reducer default' );
       return state;
-      break;
   }
 }
 
