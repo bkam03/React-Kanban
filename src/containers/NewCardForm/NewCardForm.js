@@ -30,6 +30,7 @@ class NewCardForm extends Component {
     this.setState({
       [event.target.name]: event.target.value
     });
+    console.log( event.target.value );
   }
 
   render() {
@@ -53,7 +54,8 @@ class NewCardForm extends Component {
         <div>
          <label for="priority">Priority</label>
          <br />
-                <select name="priority" onChange={this.handleInput.bind(this)}>
+                <select name="priority" value='--' onChange={this.handleInput.bind(this)}>
+                  <option value="--" hidden>----</option>
                   <option value='low'>Low</option>
                   <option value='medium'>Medium</option>
                   <option value='high'>High</option>
