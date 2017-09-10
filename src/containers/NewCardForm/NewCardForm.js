@@ -29,14 +29,14 @@ get this field to work first, then make the others.
   }
 
   handleInput( event ) {
-
+    console.log( event.target.value );
     this.setState({
       [event.target.name]: event.target.value
     });
   }
 
   render() {
-    let fieldNames = [ 'title', 'priority', 'createdBy', 'assignedTo' ];
+    let fieldNames = [ 'title', 'createdBy', 'assignedTo' ];
     return (
       <form>
         {
@@ -57,6 +57,12 @@ get this field to work first, then make the others.
           } )
         }
         <br />
+         <label for="priority">Priority</label>
+                <select name="priority" onChange={this.handleInput.bind(this)}>
+                  <option value='low'>Low</option>
+                  <option value='medium'>Medium</option>
+                  <option value='high'>High</option>
+                </select>
         <button type="button" onClick ={this.handleNewCardSubmit.bind(this)}>New Card</button>
       </form>
     );
