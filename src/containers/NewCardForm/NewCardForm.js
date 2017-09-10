@@ -17,7 +17,6 @@ class NewCardForm extends Component {
 get this field to work first, then make the others.
 */
   handleNewCardSubmit( event ) {
-    console.log( 'submit', this.state );
     this.props.addCard( this.state );
     this.setState({
       title: "",
@@ -25,11 +24,9 @@ get this field to work first, then make the others.
       createdBy: "",
       assignedTo: ""
     });
-    console.log( 'newcardform state', this.state );
   }
 
   handleInput( event ) {
-    console.log( event.target.value );
     this.setState({
       [event.target.name]: event.target.value
     });
@@ -62,6 +59,7 @@ get this field to work first, then make the others.
                   <option value='low'>Low</option>
                   <option value='medium'>Medium</option>
                   <option value='high'>High</option>
+                  <option value="blocker">Blocker</option>
                 </select>
         <button type="button" onClick ={this.handleNewCardSubmit.bind(this)}>New Card</button>
       </form>
