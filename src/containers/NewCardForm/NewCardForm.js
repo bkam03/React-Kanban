@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+
 import { connect } from 'react-redux';
 import { addCard } from '../../actions/index.js';
+import './NewCardForm.css';
 
 class NewCardForm extends Component {
   constructor(){
@@ -33,12 +35,13 @@ class NewCardForm extends Component {
   render() {
     let fieldNames = [ 'title', 'createdBy', 'assignedTo' ];
     return (
-      <form>
+      <div className='formContainer'>
         {
           fieldNames.map( ( fieldName ) => {
             return (
-              <div>
+              <div >
                 <label for={ fieldName }>{ fieldName }</label>
+                <br />
                 <input
                   type="text"
                   placeholder={ fieldName }
@@ -51,7 +54,7 @@ class NewCardForm extends Component {
             );
           } )
         }
-        <br />
+        <div>
          <label for="priority">Priority</label>
                 <select name="priority" onChange={this.handleInput.bind(this)}>
                   <option value='low'>Low</option>
@@ -59,8 +62,9 @@ class NewCardForm extends Component {
                   <option value='high'>High</option>
                   <option value="blocker">Blocker</option>
                 </select>
+        </div>
         <button type="button" onClick ={this.handleNewCardSubmit.bind(this)}>New Card</button>
-      </form>
+      </div>
     );
   };
 };
