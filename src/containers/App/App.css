@@ -29,7 +29,10 @@
 }
 
 .header {
-  border: 1px solid black;
+  border: 1px solid transparent;
+  padding-left: 10%;
+  background: linear-gradient( to bottom right, #001c74, #8863ff );
+  color: #beceff;
 }
 
 .content {

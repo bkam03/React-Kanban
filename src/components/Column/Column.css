@@ -1,7 +1,6 @@
 .column {
-  background-color: lightgreen;
-  border: 1px solid black;
-  width: 32%;
+/*   border: 1px solid black;
+   */  width: 32%;
   min-height: 300px;
   padding: 5px;
 }

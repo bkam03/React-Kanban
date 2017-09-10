@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import './Kanban.css';
 import Column from '../../components/Column/Column.js';
 import { getCards } from '../../actions/index.js';
 

@@ -39,9 +39,6 @@ class NewCardForm extends Component {
         {
           fieldNames.map( ( fieldName ) => {
             return (
-              <div >
-                <label for={ fieldName }>{ fieldName }</label>
-                <br />
                 <input
                   type="text"
                   placeholder={ fieldName }
@@ -50,12 +47,12 @@ class NewCardForm extends Component {
                   value={this.state[fieldName]}
                   onChange={this.handleInput.bind(this)}
                 />
-              </div>
             );
           } )
         }
         <div>
          <label for="priority">Priority</label>
+         <br />
                 <select name="priority" onChange={this.handleInput.bind(this)}>
                   <option value='low'>Low</option>
                   <option value='medium'>Medium</option>
@@ -63,6 +60,7 @@ class NewCardForm extends Component {
                   <option value="blocker">Blocker</option>
                 </select>
         </div>
+        <br />
         <button type="button" onClick ={this.handleNewCardSubmit.bind(this)}>New Card</button>
       </div>
     );
