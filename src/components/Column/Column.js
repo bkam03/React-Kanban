@@ -3,7 +3,6 @@ import './Column.css';
 import Card from '../../containers/Card/Card.js';
 
 const Column = ( cards ) => {
-  //console.log( 'column', cards );
   return (
     <div className="column">
     {
@@ -17,7 +16,6 @@ const Column = ( cards ) => {
     }
     </div>
   );
-
 };
 
 export default Column;

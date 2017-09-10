@@ -33,15 +33,12 @@ router.get( '/readcards', ( req, res ) => {
 } );
 
 router.put( '/updatecard', ( req, res ) => {
-  console.log( 'put route hit' );
   let cardToUpdate = req.body.card;
   let cardDirection = req.body.direction;
 
   let statusSpectrum = [ 'Queue', 'InProgress', 'Complete'];
-
   let cardToUpdateIndex = statusSpectrum.indexOf( cardToUpdate.status );
 
-  //modify card status
   switch( cardDirection ){
     case "ADVANCE_CARD":
       cardToUpdate.status = statusSpectrum[ cardToUpdateIndex + 1 ];
@@ -54,14 +51,12 @@ router.put( '/updatecard', ( req, res ) => {
   }
 
   if( cardToUpdate.status === undefined ){
-    console.log( 'out of array in move' );
     Cards.destroy( {
       where : {
         id: cardToUpdate.id
       }
     } );
   } else {
-    console.log( 'updating' );
     Cards.update( {
       status: cardToUpdate.status
     },{

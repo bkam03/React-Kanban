@@ -13,9 +13,7 @@ class NewCardForm extends Component {
       assignedTo: ""
     };
   }
-/*how submit title, make form to create new card.
-get this field to work first, then make the others.
-*/
+
   handleNewCardSubmit( event ) {
     this.props.addCard( this.state );
     this.setState({
@@ -67,17 +65,13 @@ get this field to work first, then make the others.
   };
 };
 
-//export default NewCardForm;
-
-//transfers store info to props
 const mapStateToProps = ( state ) => {
   return {
     cards: state.cards
   };
 };
-//this allows components to dispatch actions to reducer
 const mapDispatchToProps = ( dispatch ) => {
-  return {//when you call this.props.addCard, its calling this.
+  return {
     addCard: (card) => {
       dispatch(addCard(card))
     }

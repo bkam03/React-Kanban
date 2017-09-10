@@ -25,10 +25,6 @@ class Card extends Component {
     this.props.regressCard( cardAndVelocity );
   }
 
-  handleTasKDelete(){
-
-  }
-
   render(){
     let card = this.props.card;
 
@@ -58,15 +54,12 @@ class Card extends Component {
 };
 
 
-
 const mapDispatchToProps = ( dispatch ) => {
   return {
     advanceCard: ( card ) => {
-      console.log( 'dispatch card', card );
       dispatch( advanceCard( card ) );
     },
     regressCard: ( card ) => {
-      console.log( 'dispatch card', card );
       dispatch( regressCard( card ) );
     }
   };

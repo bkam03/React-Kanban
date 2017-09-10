@@ -25,7 +25,6 @@ export const getCards = () => {
 
 export const addCard = (card) => {
   return( dispatch ) => {
-
     addCardToServer( card )
       .then( ( newCard ) => {
         dispatch( {

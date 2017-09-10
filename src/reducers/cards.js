@@ -7,14 +7,14 @@ import {
 } from '../actions';
 
 const initialState = {
-}; //make array blank later
+};
 
 function getCertainCardStatusFromArray( columnStatus, cards ) {
-    let array = cards.filter( ( { status } ) => {
-      return status === columnStatus;
-    } );
-    return array;
-  }
+  let array = cards.filter( ( { status } ) => {
+    return status === columnStatus;
+  } );
+  return array;
+}
 
 function sortTasksByColumn(cards){
   let newCardState = {
@@ -30,7 +30,8 @@ function findCardInArray( array, cardId ){
   let indexOfCard = null;
   array.forEach( ( card, index ) => {
     if( card.id === cardId ){
-      indexOfCard = index;          }
+      indexOfCard = index;
+    }
   } );
   return indexOfCard;
 }
@@ -62,17 +63,11 @@ const cards = ( state = initialState, action ) => {
       };
       let columnOfConcern = cards[columnName];
       let currentCardId = action.card.id;
-
       let indexOfCardBeingEdited = findCardInArray( columnOfConcern, currentCardId );
-
-      //pull card from old column.
       let looseCard = columnOfConcern.splice( indexOfCardBeingEdited, 1 ).pop();
-
       let statusSpectrum = [ 'Queue', 'InProgress', 'Complete'];
-
       let looseCardStatusIndex = statusSpectrum.indexOf( looseCard.status );
 
-      //modify card status
       switch( movementDirection ){
         case ADVANCE_CARD:
           looseCard.status = statusSpectrum[ looseCardStatusIndex + 1 ];
@@ -84,7 +79,6 @@ const cards = ( state = initialState, action ) => {
           console.log( 'defaulting for advancecard');
       }
 
-      //push card into correct column or delete if necessary
       if( looseCard.status !== undefined ) {
         cards[ looseCard.status ].push( looseCard );
       }
@@ -100,6 +94,5 @@ const cards = ( state = initialState, action ) => {
       return state;
   }
 }
-
 
 export default cards;

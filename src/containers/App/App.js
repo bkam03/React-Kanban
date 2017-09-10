@@ -12,7 +12,6 @@ class App extends Component {
     }
   }
 
-
   render() {
     console.log( 'render in app', this.props.cards );
     return (
@@ -26,10 +25,7 @@ class App extends Component {
           cards={this.props.cards}
         />
 
-        <NewCardForm
-
-        />
-
+        <NewCardForm/>
       </div>
     );
   }
@@ -40,18 +36,7 @@ const mapStateToProps = ( state ) => {
     cards: state.cards
   };
 };
-/*//this allows components to dispatch actions to reducer
-const mapDispatchToProps = ( dispatch ) => {
-  return {//when you call this.props.addCard, its calling this.
-    addCard: (card) => {
-      dispatch(addCard(card))
-    },
-    getCards: () => {
-      dispatch( getCards() )
-    }
-  };
-};
-*/
+
 const ConnectedApp = connect(
   mapStateToProps,
   null
