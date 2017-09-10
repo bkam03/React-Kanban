@@ -27,10 +27,11 @@ export const addCard = (card) => {
   return( dispatch ) => {
 
     addCardToServer( card )
-      .then( () => {
+      .then( ( newCard ) => {
+        console.log( 'data returned to action', newCard );
         dispatch( {
           type: ADD_CARD,
-          card: card
+          card: newCard
         } );
       } );
   }
