@@ -28,7 +28,6 @@ export const addCard = (card) => {
 
     addCardToServer( card )
       .then( ( newCard ) => {
-        console.log( 'data returned to action', newCard );
         dispatch( {
           type: ADD_CARD,
           card: newCard
