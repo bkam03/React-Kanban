@@ -21,7 +21,6 @@ class Kanban extends Component {
   }
 
   componentWillReceiveProps( {cards} ) {
-    console.log( 'kanban new props', cards );
     this.setState({
       Queue: cards.Queue,
       InProgress: cards.InProgress,
@@ -31,7 +30,6 @@ class Kanban extends Component {
   }
 
   render() {
-    console.log( this.state );
     return (
       <div className="todo-list">
         <Column
