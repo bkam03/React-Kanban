@@ -16,7 +16,7 @@ class App extends Component {
   render() {
     console.log( 'render in app', this.props.cards );
     return (
-      <div>
+      <div className="content">
 
         <div className="header">
           <h1>Kanban React</h1>
