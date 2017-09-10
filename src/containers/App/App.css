@@ -31,3 +31,14 @@
 .header {
   border: 1px solid black;
 }
+
+
+
+body {
+
+}
+
+.content {
+  max-width: 1000px;
+  margin: auto;
+}
