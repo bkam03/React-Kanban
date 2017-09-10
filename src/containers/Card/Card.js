@@ -29,8 +29,8 @@ class Card extends Component {
     let card = this.props.card;
 
     return (
-      <div className='cardContainer'>
-        <div className={card.priority}>
+      <div className={card.priority}>
+        <div className='cardContainer'>
           <div className="details">
             Title: {card.title}
             <br />
