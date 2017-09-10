@@ -15,7 +15,7 @@ router.post( '/createcard', ( req, res ) => {
     assignedTo: newCard.assignedTo
   } )
   .then( ( card ) => {
-    res.end();
+    res.json( { card: card } );
   } )
   .catch( ( err ) => {
     console.log( 'createcard error', err );
@@ -33,6 +33,7 @@ router.get( '/readcards', ( req, res ) => {
 } );
 
 router.put( '/updatecard', ( req, res ) => {
+  console.log( 'put route hit' );
   let cardToUpdate = req.body.card;
   let cardDirection = req.body.direction;
 
@@ -60,6 +61,7 @@ router.put( '/updatecard', ( req, res ) => {
       }
     } );
   } else {
+    console.log( 'updating' );
     Cards.update( {
       status: cardToUpdate.status
     },{
@@ -68,6 +70,7 @@ router.put( '/updatecard', ( req, res ) => {
       }
     } );
   }
+
   res.end();
 } );
 
