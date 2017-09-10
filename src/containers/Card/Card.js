@@ -33,22 +33,24 @@ class Card extends Component {
     let card = this.props.card;
 
     return (
-      <div className={card.priority}>
-        <div>
-          Title: {card.title}
-          <br />
-          Priority: {card.priority}
-          <br />
-          Status: {card.status}
-          <br />
-          createdBy: {card.createdBy}
-          <br />
-          assignedTo: {card.assignedTo}
-          <br />
-        </div>
-        <div>
-          <button type="button" onClick={this.handleTaskRegress.bind(this)}>back</button>
-          <button type="button" onClick={this.handleTaskAdvance.bind(this)}>next</button>
+      <div className='cardContainer'>
+        <div className={card.priority}>
+          <div className="details">
+            Title: {card.title}
+            <br />
+            Priority: {card.priority}
+            <br />
+            Status: {card.status}
+            <br />
+            createdBy: {card.createdBy}
+            <br />
+            assignedTo: {card.assignedTo}
+            <br />
+          </div>
+          <div className="controls">
+            <button type="button" onClick={this.handleTaskRegress.bind(this)}>back</button>
+            <button type="button" onClick={this.handleTaskAdvance.bind(this)}>next</button>
+          </div>
         </div>
       </div>
     );

@@ -1,16 +1,29 @@
 .low {
   background-color: green;
+  padding: 5px;
 }
 
 .medium {
   background-color: orange;
+  padding: 5px;
 }
 
 .high {
   background-color: red;
+  padding: 5px;
 
 }
 
 .blocker {
   background-color: lightgrey;
+  padding: 5px;
+}
+
+.cardContainer {
+  border: 1px solid black;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
 }
