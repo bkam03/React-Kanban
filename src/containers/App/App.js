@@ -13,7 +13,7 @@ class App extends Component {
   }
 
   render() {
-    console.log( 'render in app', this.props.cards );
+    console.log( this.props );
     return (
       <div className="content">
 
@@ -32,6 +32,7 @@ class App extends Component {
 }
 //transfers store info to props
 const mapStateToProps = ( state ) => {
+  console.log(state );
   return {
     cards: state.cards
   };

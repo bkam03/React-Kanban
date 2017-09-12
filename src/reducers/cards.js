@@ -3,7 +3,8 @@ import {
   ADVANCE_CARD,
   REGRESS_CARD,
   GET_CARDS,
-  MOVE_CARD
+  MOVE_CARD,
+  EDIT_CARD
 } from '../actions';
 
 const initialState = {
@@ -88,6 +89,15 @@ const cards = ( state = initialState, action ) => {
         InProgress: cards.InProgress,
         Complete: cards.Complete
       };
+    case EDIT_CARD:
+      let modifiedCard = action.card;
+      let columnToUpdate = state[ modifiedCard.status ];
+      let indexOfCardToChangeInArray = findCardInArray( columnToUpdate, modifiedCard.id );
+      console.log( 'place in state', indexOfCardToChangeInArray);
+      let modifiedState = state;
+      modifiedState[ modifiedCard.status ][ indexOfCardToChangeInArray] = modifiedCard;
+      console.log( 'end of reducer', modifiedState );
+      return modifiedState;
 
     default:
       console.log( 'reducer default' );

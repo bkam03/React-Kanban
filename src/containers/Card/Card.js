@@ -134,6 +134,11 @@ class Card extends Component {
   }
 };
 
+const mapStateToProps = ( state ) => {
+  return {
+    cards: state.cards
+  };
+};
 
 const mapDispatchToProps = ( dispatch ) => {
   return {
@@ -150,7 +155,7 @@ const mapDispatchToProps = ( dispatch ) => {
 };
 
 const ConnectedCard = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Card);
 
