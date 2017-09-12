@@ -22,13 +22,13 @@ export const addCardToServer = ( card ) => {
   } );
 };
 
-export const editCardInServer = ( card ) => {
+export const moveCardInServer = ( card ) => {
   return new Promise( ( resolve, reject ) => {
     let xhrRequest = new XMLHttpRequest();
     xhrRequest.addEventListener( 'load', function(){
       resolve();
     } );
-    xhrRequest.open( 'PUT', '/updatecard' );
+    xhrRequest.open( 'PUT', '/movecard' );
     xhrRequest.setRequestHeader( "Content-Type", "application/json" );
     xhrRequest.send( JSON.stringify( card ) );
   } );
