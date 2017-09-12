@@ -32,6 +32,26 @@ router.get( '/readcards', ( req, res ) => {
     });
 } );
 
+router.put( '/editcard', ( req, res ) => {
+  let card = req.body;
+  Cards.update( {
+    title: card.title,
+    status: card.status,
+    priority: card.priority,
+    createdBy: card.createdBy,
+    assignedTo: card.assignedTo
+  },{
+    where: {
+      id: req.body.id
+    }
+  } ).then( (card ) => {
+    res.end();
+  } ).catch( ( err ) => {
+    console.log( 'edit card server error', err );
+  } );
+
+} );
+
 router.put( '/movecard', ( req, res ) => {
   let cardToUpdate = req.body.card;
   let cardDirection = req.body.direction;
