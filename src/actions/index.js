@@ -2,6 +2,7 @@ import { getCardsFromDB, addCardToDB } from '../lib/fakedb.js';
 import {
   getCardsFromServer,
   addCardToServer,
+  moveCardInServer,
   editCardInServer
 } from '../lib/cards-api.js';
 
@@ -37,7 +38,7 @@ export const addCard = (card) => {
 
 export const advanceCard = ( data ) => {
   return( dispatch ) => {
-    editCardInServer( data )
+    moveCardInServer( data )
       .then( () => {
         dispatch( {
           type: MOVE_CARD,
@@ -50,7 +51,7 @@ export const advanceCard = ( data ) => {
 
 export const regressCard = ( data ) => {
   return( dispatch ) => {
-    editCardInServer( data )
+    moveCardInServer( data )
       .then( () => {
         dispatch( {
           type: MOVE_CARD,
