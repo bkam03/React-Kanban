@@ -32,7 +32,7 @@ router.get( '/readcards', ( req, res ) => {
     });
 } );
 
-router.put( '/updatecard', ( req, res ) => {
+router.put( '/movecard', ( req, res ) => {
   let cardToUpdate = req.body.card;
   let cardDirection = req.body.direction;
 
