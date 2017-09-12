@@ -9,7 +9,7 @@ class NewCardForm extends Component {
     super();
     this.state = {
       title: "",
-      priority: "",
+      priority: "low",
       status: "Queue",
       createdBy: "",
       assignedTo: ""
@@ -20,7 +20,7 @@ class NewCardForm extends Component {
     this.props.addCard( this.state );
     this.setState({
       title: "",
-      priority: "",
+      priority: "low",
       createdBy: "",
       assignedTo: ""
     });
@@ -54,8 +54,7 @@ class NewCardForm extends Component {
         <div>
          <label for="priority">Priority</label>
          <br />
-                <select name="priority" value='--' onChange={this.handleInput.bind(this)}>
-                  <option value="--" hidden>----</option>
+                <select name="priority" onChange={this.handleInput.bind(this)}>
                   <option value='low'>Low</option>
                   <option value='medium'>Medium</option>
                   <option value='high'>High</option>
