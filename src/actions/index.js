@@ -11,6 +11,7 @@ export const ADVANCE_CARD = 'ADVANCE_CARD';
 export const GET_CARDS = 'GET_CARDS';
 export const REGRESS_CARD = 'REGRESS_CARD';
 export const MOVE_CARD ='MOVE_CARD';
+export const EDIT_CARD = 'EDIT_CARD';
 
 export const getCards = () => {
   return ( dispatch ) => {
@@ -59,5 +60,18 @@ export const regressCard = ( data ) => {
           movement: REGRESS_CARD
         } );
       })
+  }
+}
+
+export const editCard = ( card ) => {
+  return( dispatch ) => {
+    console.log( 'inside edit card action', card );
+    editCardInServer( card )
+      .then( () => {
+        dispatch( {
+          type: EDIT_CARD,
+          card: card
+        } );
+      } );
   }
 }
