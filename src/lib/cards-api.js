@@ -33,3 +33,15 @@ export const moveCardInServer = ( card ) => {
     xhrRequest.send( JSON.stringify( card ) );
   } );
 }
+
+export const editCardInServer = ( card )=> {
+  return new Promise( ( resolve, reject ) => {
+    let xhrRequest = new XMLHttpRequest();
+    xhrRequest.addEventListener('load', function(){
+      resolve();
+    } );
+    xhrRequest.open( 'PUT', '/editCard' );
+    xhrRequest.setRequestHeader( "Content-Type", "application/json" );
+    xhrRequest.send( JSON.stringify( card ) );
+  } );
+}
