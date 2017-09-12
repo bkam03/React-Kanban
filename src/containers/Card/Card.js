@@ -4,13 +4,39 @@ import {
   advanceCard,
   regressCard,
   ADVANCE_CARD,
-  REGRESS_CARD
+  REGRESS_CARD,
+  editCard,
+  EDIT_CARD
 } from '../../actions/';
 import './Card.css';
 
 class Card extends Component {
+  constructor(){
+    super();
+    this.state = {
+      title: "",
+      priority: "",
+      createdBy: "",
+      status: "",
+      assignedTo: "",
+      id:""
+    };
+  }
+
+  componentWillMount() {
+    let card = this.props.card;
+    this.setState( {
+      title: card.title,
+      status: card.status,
+      priority: card.priority,
+      createdBy: card.createdBy,
+      assignedTo: card.assignedTo,
+      id: card.id
+    } );
+  }
 
   handleTaskAdvance(){
+
     let cardAndVelocity = {
       card: this.props.card,
       direction: ADVANCE_CARD
@@ -25,8 +51,30 @@ class Card extends Component {
     this.props.regressCard( cardAndVelocity );
   }
 
+
+
+  handleInput( event ) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+  displayEditMenu(){
+    let cardId = this.props.card.id;
+    let cardEditFormContainer = document.getElementById( cardId );
+    if( cardEditFormContainer.className = 'editHidden' ){
+      cardEditFormContainer.className = 'editShown';
+    }
+  }
+
+  handleEditCard(){
+      this.props.editCard( this.state );
+  }
+
+
   render(){
     let card = this.props.card;
+    let fieldNames = [ 'title', 'createdBy', 'assignedTo' ];
 
     return (
       <div className={card.priority}>
@@ -43,9 +91,42 @@ class Card extends Component {
             assignedTo: {card.assignedTo}
             <br />
           </div>
+          <div>
+
+            <button type='button' onClick={ this.displayEditMenu.bind( this ) }>Edit</button>
+
+            <div className='editHidden' id={ card.id }>
+            {
+              fieldNames.map( ( fieldName ) => {
+                return (
+                    <input
+                      type="text"
+                      placeholder={ fieldName }
+                      name={ fieldName }
+                      id={ fieldName }
+                      value={this.state[fieldName]}
+                      onChange={this.handleInput.bind(this)}
+                    />
+                );
+              } )
+            }
+            <div>
+             <label for="priority">Priority</label>
+             <br />
+                    <select name="priority" onChange={this.handleInput.bind(this)}>
+                      <option value='low'>Low</option>
+                      <option value='medium'>Medium</option>
+                      <option value='high'>High</option>
+                      <option value="blocker">Blocker</option>
+                    </select>
+            </div>
+            <br />
+              <button type='button' onClick={ this.handleEditCard.bind( this ) }>Change</button>
+            </div>
+          </div>
           <div className="controls">
-            <button type="button" onClick={this.handleTaskRegress.bind(this)}>back</button>
-            <button type="button" onClick={this.handleTaskAdvance.bind(this)}>next</button>
+            <button type="button" onClick={ this.handleTaskRegress.bind(this ) }>back</button>
+            <button type="button" onClick={ this.handleTaskAdvance.bind( this ) }>next</button>
           </div>
         </div>
       </div>
@@ -61,6 +142,9 @@ const mapDispatchToProps = ( dispatch ) => {
     },
     regressCard: ( card ) => {
       dispatch( regressCard( card ) );
+    },
+    editCard: ( card ) => {
+      dispatch( editCard( card ) );
     }
   };
 };
