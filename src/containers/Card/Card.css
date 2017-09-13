@@ -25,13 +25,19 @@
   padding: 5px;
 }
 
+.details {
+  margin: 5px;
+}
+
+
 .editHidden {
   display: none;
 }
 
 .editShown {
-  display: block;
+  display: inline;
 }
+
 
 .controls {
   margin: 5px 0 0 0;
