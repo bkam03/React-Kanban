@@ -62,13 +62,19 @@ class Card extends Component {
   displayEditMenu(){
     let cardId = this.props.card.id;
     let cardEditFormContainer = document.getElementById( cardId );
-    if( cardEditFormContainer.className = 'editHidden' ){
-      cardEditFormContainer.className = 'editShown';
-    }
+    cardEditFormContainer.className = 'editShown';
+    let editButtonOnCard = document.getElementById( cardId + "edit" );
+    editButtonOnCard.className = 'editHidden';
   }
 
   handleEditCard(){
-      this.props.editCard( this.state );
+    let cardId = this.props.card.id;
+    let cardEditFormContainer = document.getElementById( cardId );
+    cardEditFormContainer.className = 'editHidden';
+    let editButtonOnCard = document.getElementById( cardId + "edit" );
+    editButtonOnCard.className = 'editShown';
+
+    this.props.editCard( this.state );
   }
 
 
@@ -91,22 +97,26 @@ class Card extends Component {
             assignedTo: {card.assignedTo}
             <br />
           </div>
-          <div>
+          <div class="editContainer">
 
-            <button type='button' onClick={ this.displayEditMenu.bind( this ) }>Edit</button>
+            <button type='button' id={card.id + "edit"}onClick={ this.displayEditMenu.bind( this ) }>Edit</button>
 
             <div className='editHidden' id={ card.id }>
             {
               fieldNames.map( ( fieldName ) => {
                 return (
-                    <input
-                      type="text"
-                      placeholder={ fieldName }
-                      name={ fieldName }
-                      id={ fieldName }
-                      value={this.state[fieldName]}
-                      onChange={this.handleInput.bind(this)}
-                    />
+                    <div>
+                      <label for={ fieldName }>{ fieldName }</label>
+                      <br />
+                      <input
+                        type="text"
+                        placeholder={ fieldName }
+                        name={ fieldName }
+                        id={ fieldName }
+                        value={this.state[fieldName]}
+                        onChange={this.handleInput.bind(this)}
+                      />
+                    </div>
                 );
               } )
             }
