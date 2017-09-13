@@ -94,7 +94,11 @@ const cards = ( state = initialState, action ) => {
       let columnToUpdate = state[ modifiedCard.status ];
       let indexOfCardToChangeInArray = findCardInArray( columnToUpdate, modifiedCard.id );
       console.log( 'place in state', indexOfCardToChangeInArray);
-      let modifiedState = state;
+      let modifiedState = {
+        Queue: state.Queue,
+        InProgress: state.InProgress,
+        Complete: state.Complete
+      };
       modifiedState[ modifiedCard.status ][ indexOfCardToChangeInArray] = modifiedCard;
       console.log( 'end of reducer', modifiedState );
       return modifiedState;
